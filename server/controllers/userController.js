@@ -1,5 +1,6 @@
-const User = require('../models/User')
-const bcrypt = require('bcryptjs')
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 module.exports = {
     signUp(req, res){
@@ -25,5 +26,39 @@ module.exports = {
         }).catch(err => {
             console.error(err)
         })
+    },
+
+    logIn(req, res , next){
+        passport.authenticate('local', (err, user, info) => {
+            if(err){
+                res.json({message: "unexpected error", err})
+            }
+            if(!user){
+                res.status(401).json(info)
+            }
+
+            req.login(user, (err) => {
+                user.password = undefined
+                if(err){
+                    res.json({message: "error authenticating"})
+                    return
+                }
+                res.json({user})
+            })
+        })(req, res, next);
+    },
+
+    loggedIn(req, res, next){
+        if(req.user){
+            req.user.password = undefined
+            res.json(req.user)
+        }else{
+            res.json(null)
+        }
+    },
+
+    logOut(req, res, next){
+        req.logout();
+        res.json({user: null})
     }
 }
