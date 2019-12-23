@@ -4,13 +4,10 @@ const passport = require('passport');
 
 module.exports = {
     signUp(req, res){
-        console.log("THIS IS HAPPENING")
         const {firstName, lastName, email, password, zipcode} = req.body
-        console.log(email)
         
         User.findOne( {email }).then(userFound => {
             if(!userFound){
-                console.log("USER NOT FOUND!")
                 const bcryptsalt = 10;
                 const salt = bcrypt.genSaltSync(bcryptsalt);
                 const encryptedPassword = bcrypt.hashSync(password, salt)

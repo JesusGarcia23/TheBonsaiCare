@@ -22,6 +22,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    rate: {
+        type: Number
+    },
     bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}]
 
 }, {
