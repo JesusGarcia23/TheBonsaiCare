@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import * as io from 'socket.io-client'
+import api from '../services/api'
+import useForm from './hookForm'
 
 const Context = React.createContext()
 
@@ -22,7 +24,30 @@ const logIn = () => {
     }).catch(err => console.error(`an unexpected error ocurred ${err}`))
 }
 
+
+const handler = (data, props) => {
+    switch(data){
+        case "login":
+            logIn();
+            break;
+        default:
+            return null;
+            break;    
+    }
+}
+
 const {inputs, handleInputChange, handleSubmit, setInputs } = useForm(handler)
+
+useEffect(() => {
+    socket.emit('init_communication')
+    api.get('/loggedin', {withCredentials: true})
+    .then(response => {
+        setCurrentUser(response.data)
+    }).catch(err => {
+        console.error(err)
+    })
+    socket.on('reload', reload)
+})
 
 const logOut = () => {
     setCurrentUser(null)
