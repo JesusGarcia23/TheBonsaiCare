@@ -22,6 +22,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    profileImg:{
+        type: String
+    },
     rate: {
         type: Number
     },
