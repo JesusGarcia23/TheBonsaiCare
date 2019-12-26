@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const bonsaiSchema = new Schema({
     type: String,
-    age: Number
+    description: Number
 },{
     timestamps: true
 })
