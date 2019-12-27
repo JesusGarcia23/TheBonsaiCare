@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
 
-const careUserSchema = new Schema({
+const careSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId, ref: "User"
     },
@@ -15,6 +15,6 @@ const careUserSchema = new Schema({
 
 })
 
-const CareUser = mongoose.model("CareUser", careUserSchema)
+const Care = mongoose.model("Care", careSchema)
 
-module.exports = CareUser
+module.exports = Care

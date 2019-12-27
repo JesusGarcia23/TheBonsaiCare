@@ -28,8 +28,11 @@ const userSchema = new Schema({
     rate: {
         type: Number
     },
-    bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}]
-
+    bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}],
+    careProfile: {
+        type: Schema.Types.ObjectId, ref: "CareUser",
+        default: null
+    }
 }, {
     timestamps: true
 })
