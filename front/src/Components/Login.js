@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Context} from '../hookAndContext/context'
 
-const loginContext = useContext(Context)
-
 const Login = () => {
+    const loginContext = useContext(Context)
+    
     return(
         <form>
-        <h1>Signup</h1>
+        <h1>Login</h1>
         </form>
     )
 }

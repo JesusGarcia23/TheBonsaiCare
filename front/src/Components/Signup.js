@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import {Context} from '../hookAndContext/context'
 
-const signupContext = useContext(Context)
-
 const Signup = () => {
+    const signupContext = useContext(Context)
+    
 return(
     <form>
     <h1>Signup</h1>
