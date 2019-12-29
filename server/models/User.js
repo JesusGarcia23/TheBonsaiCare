@@ -18,6 +18,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    city:{
+        type: String
+    },
+    state: {
+        type: String
+    },
     zipcode: {
         type: String,
         required: true
