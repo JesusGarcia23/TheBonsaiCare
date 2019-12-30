@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import * as io from 'socket.io-client'
 import api from '../services/api'
 import useForm from './hookForm'
@@ -9,14 +9,12 @@ const socket = io('http://localhost:5000')
 
 const Provider = (props) => {
 
-    const {
-        currentUser: initialCurrentUser
-    } = props
+const { currentUser: initialCurrentUser } = props
 
 const [ currentUser, setCurrentUser ] = useState(initialCurrentUser)
 
-const logIn = () => {
-    api.post('/login', inputs, {withCredentials: true})
+const logIn = ({email, password}) => {
+    api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
         setCurrentUser(response.data.user)
     }).then(() => {
@@ -25,18 +23,17 @@ const logIn = () => {
 }
 
 
-const handler = (data, props) => {
-    switch(data){
+const handler = (data, type, props) => {
+    switch(type){
         case "login":
-            logIn();
+            logIn(data);
             break;
         default:
-            return null;
-            break;    
+            return null;   
     }
 }
 
-const {inputs, handleInputChange, handleSubmit, setInputs } = useForm(handler)
+const {inputs, handleInputChange, handleSubmitForm, setInputs } = useForm(handler)
 
 useEffect(() => {
     socket.emit('init_communication')
@@ -45,20 +42,24 @@ useEffect(() => {
         setCurrentUser(response.data)
     }).catch(err => {
         console.error(err)
-    })
-    socket.on('reload', reload)
-})
+    });
+    // socket.on('reload', reload)
+}, [])
 
 const logOut = () => {
-    setCurrentUser(null)
+    api.delete('/logout', {withCredentials: true})
+    .then(response => {
+        setCurrentUser(null)
+    }).catch(err => console.error(`An error happened while trying to log out`))
+   
 }
 
-const reload = () => socket.emit('init_communication')
+// const reload = () => socket.emit('init_communication')
 
 const data = {
     currentUser,
     handleInputChange,
-    handleSubmit,
+    handleSubmitForm,
     inputs,
     setInputs,
     logOut

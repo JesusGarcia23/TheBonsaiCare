@@ -1,10 +1,10 @@
-const express = require('express'),
-      http = require('http'),
-      socketIO = require('socket.io')
+const express = require('express')
+const http = require('http')
+const socketIo = require("socket.io");
 
 require('./config/database/db.setup')
 let app = express(), io;
-const server = http.Server(app)
+const server = http.createServer(app)
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
@@ -41,7 +41,7 @@ app.use(routes)
 
 
 // SOCKET HERE
-io = socketIO(server);
+io = socketIo(server)
 io.on('connection', socket => {
     console.log('new conection established')
 
@@ -52,7 +52,7 @@ io.on('connection', socket => {
 
 })
 
-app.listen(5000, () => {
+server.listen(5000, () => {
     console.log("CONNECTED TO PORT 5000!")
 })
 

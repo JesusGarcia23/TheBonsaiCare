@@ -26,6 +26,7 @@ module.exports = {
     },
 
     logIn(req, res , next){
+        console.log("THIS WAS CALLED")
         passport.authenticate('local', (err, user, info) => {
             if(err){
                 res.json({message: "unexpected error", err})
