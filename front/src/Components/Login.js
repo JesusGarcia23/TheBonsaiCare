@@ -7,7 +7,6 @@ const Login = () => {
     const { handleSubmit , register} = useForm()
     const {currentUser, handleSubmitForm} = loginContext
     const onData = (thedata) => { handleSubmitForm(thedata, "login") }
-    console.log(loginContext)
 
     return(
         <form onSubmit={handleSubmit(onData)}>
