@@ -4,7 +4,7 @@ const passport = require('passport');
 
 module.exports = {
     signUp(req, res){
-        const {firstName, lastName, email, password, zipcode} = req.body
+        const {firstName, lastName, email, password} = req.body
         
         User.findOne( {email }).then(userFound => {
             if(!userFound){
@@ -12,10 +12,10 @@ module.exports = {
                 const salt = bcrypt.genSaltSync(bcryptsalt);
                 const encryptedPassword = bcrypt.hashSync(password, salt)
                 const bonsais = []
-                User.create({ firstName, lastName, email, password: encryptedPassword, zipcode, bonsais})
+                User.create({ firstName, lastName, email, password: encryptedPassword, bonsais})
                 .then(newUser => {
                     console.log("NEW USER!", newUser)
-                    res.json(newUser)
+                    res.json({done: true})
                 }).catch(err => console.error("An error just happened while signing up ", err))
             }else{
                 res.json({message: "THIS EMAIL ALREADY EXISTS!"})
@@ -26,7 +26,6 @@ module.exports = {
     },
 
     logIn(req, res , next){
-        console.log("THIS WAS CALLED")
         passport.authenticate('local', (err, user, info) => {
             if(err){
                 res.json({message: "unexpected error", err})

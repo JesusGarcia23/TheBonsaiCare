@@ -19,20 +19,24 @@ const userSchema = new Schema({
         required: true
     },
     city:{
-        type: String
+        type: String,
+        default: null
     },
     state: {
-        type: String
+        type: String,
+        default: null
     },
     zipcode: {
         type: String,
-        required: true
+        default: null
     },
     profileImg:{
-        type: String
+        type: String,
+        default: null
     },
     rate: {
-        type: Number
+        type: Number,
+        default: 0
     },
     bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}],
     careProfile: {
