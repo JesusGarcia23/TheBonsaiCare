@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as io from 'socket.io-client'
 import api from '../services/api'
 import useForm from './hookForm'
+import Signup from '../Components/Signup'
 
 const Context = React.createContext()
 
@@ -11,23 +12,64 @@ const Provider = (props) => {
 
 const { currentUser: initialCurrentUser } = props
 
+const [ message, setMessage ] = useState("")
+
+const [ done, setDone ] = useState(false)
+
 const [ currentUser, setCurrentUser ] = useState(initialCurrentUser)
 
 const logIn = ({email, password}) => {
+
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
         setCurrentUser(response.data.user)
     }).then(() => {
         setInputs(inputs => ({...inputs, username: "", password: ""}))
     }).catch(err => console.error(`an unexpected error ocurred ${err}`))
+
+}
+
+const signUp = ({firstName, lastName, email, password}) => {
+
+    api.post('/signup', {firstName, lastName, email, password})
+    .then(response => {
+        
+        if(response.data.message) setMessage(response.data.message);
+
+        else if(response.data.done) {
+             alert("Your account was successfully created!"); 
+             window.location = '/login';}
+
+        else { setMessage(""); setDone(response.data.done); }
+    }).catch(err => console.error(err))
+
+}
+
+const newBonsai = ({description}) => {
+    api.post('/newBonsai', {description})
+    .then(response => {
+        console.log(response)
+    }).catch(err => console.error(err))
 }
 
 
 const handler = (data, type, props) => {
+    console.log(type)
     switch(type){
-        case "login":
+        case "login": {
             logIn(data);
             break;
+        }
+
+        case "signup": {
+            signUp(data);
+            break;
+        }
+
+        case "newBonsai": {
+            newBonsai(data);
+            break;
+        }
         default:
             return null;   
     }
@@ -62,7 +104,9 @@ const data = {
     handleSubmitForm,
     inputs,
     setInputs,
-    logOut
+    logOut,
+    message,
+    done,
 }
 
 return <Context.Provider value={data}>{props.children}</Context.Provider>
