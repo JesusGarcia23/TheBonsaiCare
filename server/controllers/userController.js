@@ -25,22 +25,24 @@ module.exports = {
         });
     },
 
-    logIn(req, res , next) {
+    logInUser(req, res, next) {
         passport.authenticate('local', (err, user, info) => {
-            if(err){
+            console.log("Login Route")
+            console.log(user)
+            if(err) {
                 res.json({message: "unexpected error", err});
             }
-            if(!user){
-                res.status(401).json(info);
+            if(!user) {
+                res.json(info);
             }
-
+   
             req.login(user, (err) => {
                 user.password = undefined
                 if(err){
                     res.json({message: "error authenticating"});
                     return;
                 }
-                res.json({user});
+                res.status(200).json({user});
             })
         })(req, res, next);
     },
