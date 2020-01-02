@@ -12,9 +12,11 @@ const Provider = (props) => {
 
 const { currentUser: initialCurrentUser } = props
 
-const [ message, setMessage ] = useState("")
+const [ imageUpload, setImageUpload ] = useState("");
 
-const [ done, setDone ] = useState(false)
+const [ message, setMessage ] = useState("");
+
+const [ done, setDone ] = useState(false);
 
 const [ currentUser, setCurrentUser ] = useState(initialCurrentUser)
 
@@ -22,10 +24,16 @@ const logIn = ({email, password}) => {
 
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
+        console.log(response)
+        if(response.data.message) setMessage(response.data.message);
+        else {
+            setInputs(inputs => ({...inputs, username: "", password: ""}));
+            setMessage("");
+            window.location = '/dashboard'
+        }
         setCurrentUser(response.data.user)
-    }).then(() => {
-        setInputs(inputs => ({...inputs, username: "", password: ""}))
-    }).catch(err => console.error(`an unexpected error ocurred ${err}`))
+    }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
+})
 
 }
 
@@ -41,17 +49,35 @@ const signUp = ({firstName, lastName, email, password}) => {
              window.location = '/login';}
 
         else { setMessage(""); setDone(response.data.done); }
-    }).catch(err => console.error(err))
+    }).catch(err => console.error(err));
 
+}
+
+
+const logOut = () => {
+    api.delete('/logout', {withCredentials: true})
+    .then(response => {
+        setCurrentUser(null);
+    }).catch(err => console.error(`An error happened while trying to log out`));
+   
 }
 
 const newBonsai = ({description}) => {
     api.post('/newBonsai', {description})
     .then(response => {
+        console.log(response);
+    }).catch(err => console.error(err));
+}
+
+const uploadNewImage = (e) => {
+    e.preventDefault();
+    console.log("THIS IS IMAGE TO UPLOAD");
+    console.log(imageUpload);
+    api.post('/uploadNewImg', imageUpload)
+    .then(response => {
         console.log(response)
     }).catch(err => console.error(err))
 }
-
 
 const handler = (data, type, props) => {
     console.log(type)
@@ -75,26 +101,19 @@ const handler = (data, type, props) => {
     }
 }
 
-const {inputs, handleInputChange, handleSubmitForm, setInputs } = useForm(handler)
+const {inputs, handleInputChange, handleSubmitForm, setInputs } = useForm(handler);
 
 useEffect(() => {
     socket.emit('init_communication')
     api.get('/loggedin', {withCredentials: true})
     .then(response => {
-        setCurrentUser(response.data)
+        setCurrentUser(response.data);
     }).catch(err => {
-        console.error(err)
+        console.error(err);
     });
     // socket.on('reload', reload)
 }, [])
 
-const logOut = () => {
-    api.delete('/logout', {withCredentials: true})
-    .then(response => {
-        setCurrentUser(null)
-    }).catch(err => console.error(`An error happened while trying to log out`))
-   
-}
 
 // const reload = () => socket.emit('init_communication')
 
@@ -107,6 +126,9 @@ const data = {
     logOut,
     message,
     done,
+    imageUpload,
+    setImageUpload,
+    uploadNewImage
 }
 
 return <Context.Provider value={data}>{props.children}</Context.Provider>

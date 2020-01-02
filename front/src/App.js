@@ -3,6 +3,7 @@ import {Context} from './hookAndContext/context';
 import {Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import ImageTest from './Components/ImageTest'
 import './App.css';
 const Navbar = lazy(() => import('./Components/Navbar'));
 
@@ -14,6 +15,7 @@ const App = () => {
     <Switch>
     <Route exact path='/signup' component={Signup}/>
     <Route exact path='/login' component={Login}/>
+    <Route exact path='/imageTest' component={ImageTest}></Route>
     </Switch>
     
     </Suspense>

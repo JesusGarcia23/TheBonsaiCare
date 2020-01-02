@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 const Login = () => {
     const loginContext = useContext(Context)
     const { handleSubmit , register} = useForm()
-    const {currentUser, handleSubmitForm} = loginContext
+    const {currentUser, handleSubmitForm, message} = loginContext
     const onData = (thedata) => { handleSubmitForm(thedata, "login") }
 
     return(
@@ -16,6 +16,7 @@ const Login = () => {
 
         <label htmlFor='password'>Password</label>
         <input type='password' name='password' ref={register}></input>
+        {message !== "" ? <span style={{color: 'red'}}>{message}</span> : null}
         <button>Login</button>
         </form>
     )
