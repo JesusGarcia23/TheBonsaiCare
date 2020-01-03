@@ -1,24 +1,27 @@
-const express = require('express')
-const http = require('http')
+require('dotenv').config();
+const express = require('express');
+const http = require('http');
 const socketIo = require("socket.io");
 
-require('./config/database/db.setup')
+require('./config/database/db.setup');
 let app = express(), io;
 const server = http.createServer(app)
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const logger = require('morgan')
-const cookieParser = require('cookie-parser')
-const mongoose = require('mongoose')
-const session = require('express-session')
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const mongoose = require('mongoose');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session)
-const routes = require('./routes/routes')
+const routes = require('./routes/routes');
 
-app.use(logger('dev'))
+app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(express.json())
+app.use(express.static(path.join(__dirname , 'public')));
+app.use(express.json());
 
 app.use(session({
     secret: 'bonsai is art',
@@ -38,6 +41,7 @@ app.use(cors({
     origin: ["http://localhost:3000"]
 }))
 app.use(routes)
+app.use('/', require('./routes/file-upload-route'));
 
 
 // SOCKET HERE
