@@ -69,11 +69,13 @@ const newBonsai = ({description}) => {
     }).catch(err => console.error(err));
 }
 
-const uploadNewImage = (e) => {
+const uploadNewImage = async (e) => {
     e.preventDefault();
-    console.log("THIS IS IMAGE TO UPLOAD");
-    console.log(imageUpload);
-    api.post('/uploadNewImg', imageUpload)
+    console.log(imageUpload)
+    const uploadData = new FormData();
+    await uploadData.append("imageUrl", imageUpload)
+    console.log(uploadData)
+    api.post('/uploadNewImg', {imageUrl: imageUpload})
     .then(response => {
         console.log(response)
     }).catch(err => console.error(err))

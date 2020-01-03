@@ -19,7 +19,7 @@ const ImageTest = () => {
     return(
         <form onSubmit={e => uploadNewImage(e)}>
         <label>Image upload</label>
-        <input type='file' onChange={fileHandler}></input>
+        <input type='file' name="imageUrl" onChange={fileHandler}></input>
         <button>SUBMIT</button>
         </form>
     )
