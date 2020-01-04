@@ -16,6 +16,7 @@ var storage = cloudinaryStorage({
     filename: function (req, file, cb) {
         console.log("HERE IS THE FILENAME");
         console.log(file.originalname)
+        file.originalname = "test1.jpg"
         cb(null, file.originalname);
     }
 });
