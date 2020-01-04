@@ -75,7 +75,7 @@ const uploadNewImage = async (e) => {
     const uploadData = new FormData();
     await uploadData.append("imageUrl", imageUpload)
     console.log(uploadData)
-    api.post('/uploadNewImg', {imageUrl: imageUpload})
+    api.post('/uploadNewImg', uploadData)
     .then(response => {
         console.log(response)
     }).catch(err => console.error(err))

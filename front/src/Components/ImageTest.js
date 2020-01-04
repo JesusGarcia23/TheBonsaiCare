@@ -11,7 +11,7 @@ const ImageTest = () => {
         const theFile = e.target.files[0]
         if(theFile.size <= 10485760){
         const theImg = URL.createObjectURL(theFile)
-        setImageUpload(theImg)
+        setImageUpload(theFile)
         }
 
     }
@@ -20,6 +20,7 @@ const ImageTest = () => {
         <form onSubmit={e => uploadNewImage(e)}>
         <label>Image upload</label>
         <input type='file' name="imageUrl" onChange={fileHandler}></input>
+        <div>HELLO</div>
         <button>SUBMIT</button>
         </form>
     )
