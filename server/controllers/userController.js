@@ -11,7 +11,7 @@ module.exports = {
         }
         try {
             const { public_id, secure_url } = req.file
-
+            console.log(req.file)
             await Image.create({
                 publicId: public_id,
                 imageUrl: secure_url
@@ -29,8 +29,8 @@ module.exports = {
     deleteCloudImg(req, res) {
         const { publicId } = req.body
         cloudinary.uploader.destroy(publicId, (error, result) => {
-            if(error) next(new Error(`Something wen trong!`, error))
-            console.log(result)
+            if(error) console.error(`Something wen trong!`, error)
+            else console.log(result)
         })
     }
 

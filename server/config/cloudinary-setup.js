@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
+const Image = require('../models/Image');
 
 cloudinary.config({
     cloud_name: process.env.cloudName,
@@ -14,10 +15,10 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
-        console.log("HERE IS THE FILENAME");
-        console.log(file.originalname)
-        file.originalname = "test1.jpg"
-        cb(null, file.originalname);
+        console.log(file) // file.originalname is what we need
+
+        //WITH NO FILENAME AS SECOND PARAMETER, IT GENERATES ONE RANDOMLY
+        cb(null);
     }
 });
 
