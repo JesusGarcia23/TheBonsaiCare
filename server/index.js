@@ -41,7 +41,6 @@ app.use(cors({
     origin: ["http://localhost:3000"]
 }))
 app.use(routes)
-app.use('/', require('./routes/file-upload-route'));
 
 
 // SOCKET HERE

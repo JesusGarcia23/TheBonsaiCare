@@ -12,3 +12,5 @@ const bonsaiSchema = new Schema({
 const Bonsai = mongoose.model('Bonsai', bonsaiSchema)
 
 module.exports = Bonsai
+
+//bonsai-care/mE.jpg

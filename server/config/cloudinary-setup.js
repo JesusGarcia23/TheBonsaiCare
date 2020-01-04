@@ -14,7 +14,8 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
-        console.log("THIS IS GETTING CALLED!")
+        console.log("HERE IS THE FILENAME");
+        console.log(file.originalname)
         cb(null, file.originalname);
     }
 });
