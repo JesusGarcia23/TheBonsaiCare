@@ -15,12 +15,16 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
-        console.log(req.user)
-        console.log(file) // file.originalname is what we need
-        const imageArray = Image.find({publicId: `bonsai-care/${file.originalname}`})
+ 
+        const time = new Date();
+        const imageName = `bonsai-care/${file.originalname}${time}`
+
+        //Check if duplicates
+        const imageArray = Image.find({publicId: imageName})
         console.log(imageArray);
+
         //WITH NO FILENAME AS SECOND PARAMETER, IT GENERATES ONE RANDOMLY
-        cb(null);
+        cb(null, imageName);
     }
 });
 
