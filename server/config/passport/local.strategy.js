@@ -15,34 +15,3 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done)
     }).catch(err => new Error(err))
    
 }))
-
-// TRY VERSION
-// try {
-//     const user = await User.findOne({email})
-//     console.log(user)
-
-//     if(user === null || !bcrypt.compareSync(password, user.password)) {
-//         done(null, false, {message: "Incorrect email or password"})
-//     }
-
-//     return done(null, user)
-
-//    } catch(err) {
-//        console.error(err)
-//        return null
-//    }
-
-
-
-// MONGO WITHOUT THEN
-
-
-// User.findOne({email}, (err, user) => {
-//     if(err) {
-//         return done(err)
-//     }
-//     if(!user) {
-//         console.log("USER DOES NOT EXIST!")
-//         return done(null, false)
-//     }
-// })

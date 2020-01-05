@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const imageSchema = new Schema({
     
+    owner: {
+        type: String
+    },
+    
     publicId: {
         type: String
     },

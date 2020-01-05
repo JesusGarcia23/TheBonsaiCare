@@ -15,9 +15,9 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
- 
+
         const time = new Date();
-        const imageName = `bonsai-care/${file.originalname}${time}`
+        const imageName = `bonsai-care/${file.originalname}${req.user.firstName}${time}`
 
         //Check if duplicates
         const imageArray = Image.find({publicId: imageName})
