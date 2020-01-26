@@ -72,10 +72,6 @@ const newBonsai = ({description}) => {
 const uploadNewImage = async (e) => {
     e.preventDefault();
     console.log(imageUpload)
-    const time = new Date();
-    console.log(time)
-    const imageName = `${currentUser.firstName}${imageUpload.name}`
-    imageUpload.owner = imageName;
     const uploadData = new FormData();
     await uploadData.append("imageUrl", imageUpload)
     console.log(uploadData)
