@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const careUserSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId, ref: "User"
     },
     skills: {
-        type: String,
+        type: [String],
         enum: ["Trimming", "Fertilizer", "Insect control", "Repotting", "Wiring"]
     },
-    pendingCare: {
+    pendingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
-    },
-    comingCare: {
+    }],
+    comingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
-    },
+    }],
     services: [{type:  Schema.Types.ObjectId, ref: "Service"}],
 
 })

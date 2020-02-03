@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const CareUser = require('../models/CareUser');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
@@ -54,9 +55,26 @@ module.exports = {
         }
     },
 
-    logOut(req, res, next){
+    logOut(req, res, next) {
         req.logout();
         res.json({user: null});
     },
+
+    careSignUp(req, res, next) {
+       console.log(req.user);
+
+       CareUser.create({
+        user: req.user.id,
+        skills: [],
+        pendingCare: [],
+        comingCare: [],
+        services: [],
+    }).then(newCareUser => {
+        console.log(newCareUser);
+    }).catch(err => {
+        console.log(err);
+    })
+
+    }
 
 }

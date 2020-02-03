@@ -11,6 +11,8 @@ router.post('/signup', authController.signUp);
 router.post('/login', authController.logInUser);
 router.get('/loggedin', authController.loggedIn);
 router.delete('/logout', authController.logOut);
+router.post('/careSignup', authController);
+
 
 // USER ACTION ROUTES
 router.post('/uploadNewImg', uploader.single('imageUrl'), userController.uploadImage);
