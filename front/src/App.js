@@ -3,6 +3,7 @@ import { Context } from './hookAndContext/context';
 import {Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import CareSignup from './Components/CareSignup';
 import ImageTest from './Components/ImageTest';
 import Dashboard from './Components/Dashboard';
 import './App.css';
@@ -16,6 +17,7 @@ const App = () => {
     <Switch>
     <Route exact path='/signup' component={Signup}/>
     <Route exact path='/login' component={Login}/>
+    <Route exact path='/caresignup' component={CareSignup}/>
     <Route exact path='/dashboard' component={Dashboard}/>
     <Route exact path='/imageTest' component={ImageTest}/>
     </Switch>

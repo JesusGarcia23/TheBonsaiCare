@@ -3,10 +3,10 @@ import {Context} from '../hookAndContext/context'
 import { useForm } from 'react-hook-form'
 
 const Login = () => {
-    const loginContext = useContext(Context)
-    const { handleSubmit , register} = useForm()
-    const {currentUser, handleSubmitForm, message} = loginContext
-    const onData = (thedata) => { handleSubmitForm(thedata, "login") }
+    const loginContext = useContext(Context);
+    const { handleSubmit , register } = useForm();
+    const {currentUser, handleSubmitForm, message} = loginContext;
+    const onData = (thedata) => { handleSubmitForm(thedata, "login") };
 
     return(
         <form onSubmit={handleSubmit(onData)}>
