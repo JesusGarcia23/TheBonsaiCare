@@ -13,6 +13,9 @@ const CareSignup = () => {
         <form onSubmit={handleSubmit(onData)}>
         <label></label>
         <input type='' name=''></input>
+
+        <label></label>
+        <input type='' name=''></input>
         </form>
     )
 }
