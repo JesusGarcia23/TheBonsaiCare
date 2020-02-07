@@ -16,6 +16,15 @@ const CareSignup = () => {
 
         <label></label>
         <input type='' name=''></input>
+
+        <label></label>
+        <input type='' name=''></input>
+
+        <label>Skills</label>
+        <input type='checkbox' name='' onChange={} checked={}></input>
+        <input type='checkbox' name='' onChange={} checked={}></input>
+        <input type='checkbox' name='' onChange={} checked={}></input>
+        <input type='checkbox' name='' onChange={} checked={}></input>
         </form>
     )
 }
