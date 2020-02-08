@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 const useForm = (callback) => {
 const [inputs, setInputs] = useState({})
 
-const handleSubmitForm = (data, props) => {
-    callback(data, props);
+const handleSubmitForm = (data, type, props) => {
+    callback(data, type, props);
 }
 
 const handleInputChange = (event) => {

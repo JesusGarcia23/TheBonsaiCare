@@ -62,16 +62,36 @@ const logOut = () => {
    
 }
 
-const newBonsai = ({description}) => {
-    api.post('/newBonsai', {description})
+const addNewBonsai = async ({bonsaiDescription}, props) => {
+
+    const { history } = props;
+
+    const uploadData = new FormData();
+    await uploadData.append("imageUrl", imageUpload)
+    api.post('/uploadNewImg', uploadData, {withCredentials: true})
     .then(response => {
-        console.log(response);
-    }).catch(err => console.error(err));
+        const imageId = response.data._id
+
+        let dataToSend = {
+            imageId,
+            bonsaiDescription
+        }
+        
+        console.log(bonsaiDescription);
+
+        api.post('/newBonsai', dataToSend)
+        .then(response => {
+            history.push('/dashboard')
+        }).catch(err => console.error(err));
+
+
+
+
+    }).catch(err => console.error(err))
 }
 
 const uploadNewImage = async (e) => {
     e.preventDefault();
-    console.log(imageUpload)
     const uploadData = new FormData();
     await uploadData.append("imageUrl", imageUpload)
     console.log(uploadData)
@@ -82,7 +102,8 @@ const uploadNewImage = async (e) => {
 }
 
 const handler = (data, type, props) => {
-    console.log(type)
+    console.log(type);
+    console.log();
     switch(type){
         case "login": {
             logIn(data);
@@ -94,8 +115,8 @@ const handler = (data, type, props) => {
             break;
         }
 
-        case "newBonsai": {
-            newBonsai(data);
+        case "createBonsai": {
+            addNewBonsai(data, props);
             break;
         }
         default:
@@ -130,7 +151,8 @@ const data = {
     done,
     imageUpload,
     setImageUpload,
-    uploadNewImage
+    uploadNewImage,
+    addNewBonsai,
 }
 
 return <Context.Provider value={data}>{props.children}</Context.Provider>

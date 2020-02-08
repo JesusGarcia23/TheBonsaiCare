@@ -5,7 +5,7 @@ const session = require('express-session')
 
 module.exports = {
     
-  async  uploadImage(req, res) {
+  async  uploadImage(req, res, next) {
 
         if(!req.file) {
             next(new Error('No file uploaded!'));
@@ -18,7 +18,7 @@ module.exports = {
                 publicId: public_id,
                 imageUrl: secure_url
             }).then(theImage => {
-
+                res.json(theImage);
             }).catch(err => {
                 console.error(err)
             })
