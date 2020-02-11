@@ -2,6 +2,7 @@ const Bonsai = require('../models/Bonsai');
 const User = require('../models/User');
 
 module.exports = { 
+
     createBonsai(req, res, next) {
         console.log(req.body);
         const { imageId, bonsaiDescription } = req.body;
@@ -17,5 +18,9 @@ module.exports = {
         }).catch(err => {
             res.json({message: 'An error just happened when creating Bonsai', err});
         })
+    },
+
+    deleteBonsai(req, res, next) {
+        
     }
 }
