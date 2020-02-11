@@ -79,7 +79,7 @@ const addNewBonsai = async ({bonsaiDescription}, props) => {
         
         console.log(bonsaiDescription);
 
-        api.post('/newBonsai', dataToSend)
+        api.post('/newBonsai', dataToSend, {withCredentials: true})
         .then(response => {
             history.push('/dashboard')
         }).catch(err => console.error(err));
