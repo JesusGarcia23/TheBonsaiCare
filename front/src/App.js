@@ -1,6 +1,7 @@
 import React, {useContext, Suspense, lazy }from 'react';
 import { Context } from './hookAndContext/context';
 import {Switch, Route} from 'react-router-dom';
+import Search from './Components/SearchCare';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import CareSignup from './Components/CareSignup';
