@@ -11,6 +11,7 @@ const Home = (props) => {
             <div>Homepage</div>
         )
     }
+    
     else {
         return (
             <div>Log in or Sign up Please</div>
