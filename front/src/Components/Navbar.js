@@ -21,8 +21,9 @@ return(
    
     {currentUser ? 
       <ul className="navbar-nav">
-      <button onClick={e => handleLogOut(e)}> Logout</button>
-      <Link to='/dashboard'>Dashboard</Link>
+      <li><button onClick={e => handleLogOut(e)}> Logout</button></li>
+      <li><Link to='/dashboard'>Dashboard</Link></li>
+      <li><Link to='/inbox'>Inbox</Link></li>
       </ul> : <ul className="navbar-nav">
       <Link to='/signup' className='nav-link'>Signup</Link>
       <Link to='/login' className='nav-link'>Login</Link>
