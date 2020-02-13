@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, Link} from 'react';
 import Context from '../hookAndContext/context';
 
 const Home = (props) => {
@@ -14,7 +14,10 @@ const Home = (props) => {
     
     else {
         return (
-            <div>Log in or Sign up Please</div>
+            <div>
+            <Link to='/login'>Login</Link>
+            <Link to='/signup'>Signup</Link>
+            </div>
         )
     }
 }
