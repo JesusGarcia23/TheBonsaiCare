@@ -21,9 +21,11 @@ return(
    
     {currentUser ? 
       <ul className="navbar-nav">
-      <li><button onClick={e => handleLogOut(e)}> Logout</button></li>
+      <li><button onClick={e => handleLogOut(e)}>Logout</button></li>
       <li><Link to='/dashboard'>Dashboard</Link></li>
+      <li><Link to='/search'>Search</Link></li>
       <li><Link to='/inbox'>Inbox</Link></li>
+      {currentUser.careProfile !== null ? <li><Link to='caresignup'>Become a carer</Link></li> : null}
       </ul> : <ul className="navbar-nav">
       <Link to='/signup' className='nav-link'>Signup</Link>
       <Link to='/login' className='nav-link'>Login</Link>
