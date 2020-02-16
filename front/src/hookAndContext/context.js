@@ -29,7 +29,7 @@ const logIn = ({email, password}) => {
         else {
             setInputs(inputs => ({...inputs, username: "", password: ""}));
             setMessage("");
-            window.location = '/dashboard'
+            window.location = '/'
         }
         setCurrentUser(response.data.user)
     }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
