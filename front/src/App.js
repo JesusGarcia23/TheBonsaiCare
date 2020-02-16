@@ -1,7 +1,7 @@
 import React, {useContext, Suspense, lazy }from 'react';
 import { Context } from './hookAndContext/context';
 import {Switch, Route} from 'react-router-dom';
-import Home from './Components/Home';
+import HomePage from './Components/HomePage';
 import Search from './Components/SearchCare';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -20,7 +20,7 @@ const App = () => {
     <Suspense fallback={<div>...Loading</div>}>
     <Navbar/>
     <Switch>
-    <Route exact path='/' component={Home}/>
+    <Route exact path='/' component={HomePage}/>
     <Route exact path='/signup' component={Signup}/>
     <Route exact path='/login' component={Login}/>
     <Route exact path='/search' component={Search}/>
