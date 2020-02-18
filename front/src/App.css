@@ -60,7 +60,7 @@
 }
 
 .home-search-container-2 {
-  height: 30vh;
+  height: 50vh;
   width: 40vw;
   border: 1px solid black;
   display: none;
@@ -92,6 +92,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Calendar CSS */
+
+.react-calendar__month-view__weekdays {
+  justify-content: 'space-evenly';
+}
+
+.react-calendar__tile {
+  padding: 0px 0px;
+  font-size: 10px;
 }
 
 

@@ -1,6 +1,7 @@
 import React, {useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../hookAndContext/context';
+import Calendar from 'react-calendar/dist/entry.nostyle'
 
 const HomePage = (props) => {
 
@@ -74,6 +75,8 @@ const HomePage = (props) => {
             <h2>{isDropSelected ? "Drop-in" : "Boarding"}</h2>
             <button onClick={e => switchDiv(e, 'first')}>Go back</button>
             This is second (Calendar and Maintenance services)
+            <Calendar/>
+
             </div>
 
             </div>
