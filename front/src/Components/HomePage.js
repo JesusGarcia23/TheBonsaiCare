@@ -15,9 +15,10 @@ const HomePage = (props) => {
             <div  className='home-search-container'>
 
             <div className='home-search-item-container'>
-            <div className='home-search-item' style={styles}></div>
-            <div className='home-search-item' style={styles}></div>
-            <div className='home-search-item' style={styles}></div>
+            <div className='home-search-item' style={styles}>
+            <p>Drop-in visit</p></div>
+            <div className='home-search-item' style={styles}>
+            <p>Bonsai Boarding</p></div>
             </div>
             <button>Search</button>
             </div>
