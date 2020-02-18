@@ -95,9 +95,27 @@
 }
 
 /* Calendar CSS */
+.react-calendar {
+  width: 30vw;
+  height: 20vh;
+}
+
+.react-calendar__navigation {
+
+}
 
 .react-calendar__month-view__weekdays {
-  justify-content: 'space-evenly';
+  display: flex;
+  justify-content: flex-end;
+  color: 'red';
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+}
+
+.myCalendar {
+  justify-content: space-evenly;
 }
 
 .react-calendar__tile {

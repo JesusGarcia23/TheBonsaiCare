@@ -75,7 +75,8 @@ const HomePage = (props) => {
             <h2>{isDropSelected ? "Drop-in" : "Boarding"}</h2>
             <button onClick={e => switchDiv(e, 'first')}>Go back</button>
             This is second (Calendar and Maintenance services)
-            <Calendar/>
+            <Calendar
+            className='myCalendar'/>
 
             </div>
 
