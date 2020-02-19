@@ -100,8 +100,8 @@
   height: 20vh;
 }
 
-.react-calendar__navigation {
-
+.selectedDate {
+  color: red;
 }
 
 .react-calendar__month-view__weekdays {

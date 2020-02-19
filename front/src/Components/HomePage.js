@@ -5,6 +5,21 @@ import Calendar from 'react-calendar/dist/entry.nostyle'
 
 const HomePage = (props) => {
 
+    const months = {
+        0: 'January',
+        1: 'February',
+        2: 'March',
+        3: 'April',
+        4: 'May',
+        5: 'June',
+        6: 'July',
+        7: 'August',
+        8: 'September',
+        9: 'October',
+        10: 'November',
+        11: 'December'
+      }
+
     const div1 = document.getElementsByClassName('home-search-container');
 
     const div2 = document.getElementsByClassName('home-search-container-2');
@@ -15,6 +30,14 @@ const HomePage = (props) => {
     let [ isDropSelected, setIsDropSelected ] = useState(false);
 
     let [ isBoardingSelected, setIsBoardingSelected ] = useState(false);
+
+    let [ firstDate, setFirstDate ] = useState(new Date());
+
+    let [selectedDates, setSelectedDates] = useState([])
+
+    let [ secondDate, setSecondDate ] = useState('')
+
+
 
     let optionSelected = isDropSelected || isBoardingSelected;
 
@@ -55,6 +78,26 @@ const HomePage = (props) => {
         }
     }
 
+    const updateDay = (days) => {
+        console.log(days)
+         //let realDate = `${months[myDate.getMonth()]} ${myDate.getDate()}, ${myDate.getFullYear()}`
+        setSelectedDates(days);
+    }
+
+    const changeColor = ({date}) => {
+        if(date.getMonth() === 2) {
+            console.log(date);
+            return 'selectedDate'
+        }else {
+            return false
+        }
+        // if(date){
+        //     return 'saturday'
+        // } else {
+        //     null
+        // }
+    }
+
     if(currentUser) {
         return (
             <div id='homepage'>
@@ -76,8 +119,8 @@ const HomePage = (props) => {
             <button onClick={e => switchDiv(e, 'first')}>Go back</button>
             This is second (Calendar and Maintenance services)
             <Calendar
-            className='myCalendar'/>
-
+            className='myCalendar' selectRange={true} value={firstDate} minDate={firstDate} onClickDay={e => updateDay(e)} onChange={e => updateDay(e)}
+            tileClassName={(event) => changeColor(event)}/>
             </div>
 
             </div>
