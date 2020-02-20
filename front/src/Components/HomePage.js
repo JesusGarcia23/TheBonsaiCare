@@ -89,7 +89,7 @@ const HomePage = (props) => {
             console.log(date);
             return 'selectedDate'
         }else {
-            return false
+            return null
         }
         // if(date){
         //     return 'saturday'
