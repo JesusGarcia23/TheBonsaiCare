@@ -31,11 +31,11 @@ const HomePage = (props) => {
 
     let [ isBoardingSelected, setIsBoardingSelected ] = useState(false);
 
-    let [ firstDate, setFirstDate ] = useState(new Date());
+    let [ firstDate, setFirstDate ] = useState(null);
 
     let [selectedDates, setSelectedDates] = useState([])
 
-    let [ secondDate, setSecondDate ] = useState('')
+    let [ secondDate, setSecondDate ] = useState(null)
 
 
 
@@ -78,24 +78,60 @@ const HomePage = (props) => {
         }
     }
 
-    const updateDay = (days) => {
-        console.log(days)
+    const updateDay = (day) => {
+        console.log(firstDate);
+        console.log(secondDate);
+        if(firstDate) {
+            if(day.getMonth() > firstDate.getMonth() || day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate()) {
+                setSecondDate(day);
+            }else {
+                setFirstDate(day);
+            }
+        }
+        else if(firstDate && secondDate) {
+            if(day.getMonth() > secondDate.getMonth() && day.getMonth() > firstDate.getMonth()){
+                setSecondDate(day);
+            }
+            else if(day.getMonth() === secondDate.getMonth() && day.getDate() >= secondDate.getDate()) {
+                setSecondDate(day);
+            }else if(day.getMonth() === firstDate.getMonth() && day.getMonth() === secondDate.getMonth() 
+            && day.getDate() >= firstDate.getDate() && day.getDate() <= secondDate.getDate()){
+                setSecondDate(day);
+                
+            }else {
+                setFirstDate(day);
+            }
+        }else {
+            setFirstDate(day);
+        }
+
+
+
+        // if(days.length > 1) {
+        //     setFirstDate(days[0]);
+        //     setSecondDate(days[1]);
+        // }
          //let realDate = `${months[myDate.getMonth()]} ${myDate.getDate()}, ${myDate.getFullYear()}`
-        setSelectedDates(days);
+        // setSelectedDates(days);
     }
 
     const changeColor = ({date}) => {
-        if(date.getMonth() === 2) {
-            console.log(date);
-            return 'selectedDate'
-        }else {
-            return null
+        let startDate = firstDate;
+        let endDate =  secondDate;
+
+        if(startDate && date.getMonth() === startDate.getMonth() && date.getDate() === startDate.getDate()){
+            return 'selectedDate';
         }
-        // if(date){
-        //     return 'saturday'
-        // } else {
-        //     null
-        // }
+
+        else if(startDate && secondDate) {
+        if(date.getMonth() >= startDate.getMonth() && date.getMonth() <= endDate.getMonth() && 
+        date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate()) {
+            return 'selectedDate';
+        }
+
+        }else {
+            return null;
+        }
     }
 
     if(currentUser) {
@@ -119,7 +155,7 @@ const HomePage = (props) => {
             <button onClick={e => switchDiv(e, 'first')}>Go back</button>
             This is second (Calendar and Maintenance services)
             <Calendar
-            className='myCalendar' selectRange={true} value={firstDate} minDate={firstDate} onClickDay={e => updateDay(e)} onChange={e => updateDay(e)}
+            className='myCalendar' value={firstDate} minDate={new Date()} onClickDay={e => updateDay(e)}
             tileClassName={(event) => changeColor(event)}/>
             </div>
 
@@ -147,5 +183,7 @@ const HomePage = (props) => {
         )
     }
 }
+
+//selectRange={true}
 
 export default HomePage;
