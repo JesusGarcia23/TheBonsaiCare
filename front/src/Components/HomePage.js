@@ -123,9 +123,12 @@ const HomePage = (props) => {
             return 'selectedDate';
         }
 
-        else if(startDate && secondDate) {
-        if(date.getMonth() >= startDate.getMonth() && date.getMonth() <= endDate.getMonth() && 
-        date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate()) {
+        if(startDate && endDate) {
+        if(date.getMonth() === startDate.getMonth() && date.getMonth() === endDate.getMonth()
+         && date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate()) {
+            return 'selectedDate';
+        }
+        if(date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate()) {
             return 'selectedDate';
         }
 
