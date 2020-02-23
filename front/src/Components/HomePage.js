@@ -85,18 +85,16 @@ const HomePage = (props) => {
         }
         else if(firstDate !== null && secondDate === null) {
             console.log("THIS HAPPENED ONLY ONE");
-            if(day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate() ||
-            day.getMonth() > firstDate.getMonth()) {
+            if(day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate() 
+            || day.getMonth() > firstDate.getMonth()) {
                 setSecondDate(day);
             }else {
                 setFirstDate(day);
                 setSecondDate(firstDate);
             }
-            //     setFirstDate(day);
-            // }
         }
         else if(firstDate !== null && secondDate !== null) {
-            console.log("SECOND!");
+  
             if(day.getMonth() === firstDate.getMonth() &&  day.getDate() === firstDate.getDate()) {
                 setFirstDate(secondDate);
                 setSecondDate(null);
@@ -111,15 +109,16 @@ const HomePage = (props) => {
              day.getMonth() < secondDate.getMonth() && day.getDate() > firstDate.getDate()) {
                  setSecondDate(day);
              }
-       
-            // // console.log("FIRST AND END");
-            // if(day.getMonth() > secondDate.getMonth()){
-            //     setSecondDate(day);
-            // }
-
+             else if(day.getMonth() > firstDate.getMonth() && day.getMonth() === secondDate.getMonth() && day.getDate() < secondDate.getDate()) {
+                 setSecondDate(day);
+             }
+             else if(day.getMonth() > firstDate.getMonth()  && day.getMonth() < secondDate.getMonth()) {
+                setSecondDate(day);
+             }
+             console.log(firstDate);
+             console.log(secondDate);
         }
-    console.log(firstDate);
-    console.log(secondDate);
+
     }
 
     const changeColor = ({date}) => {
@@ -141,7 +140,7 @@ const HomePage = (props) => {
             }
             if(startDate.getMonth() < endDate.getMonth()) {
                 if(date.getMonth() === startDate.getMonth() && date.getDate() >= startDate.getDate() || date.getMonth() === endDate.getMonth() &&
-                date.getDate() <= endDate.getDate()) {
+                date.getDate() <= endDate.getDate() || date.getMonth() < endDate.getMonth() && date.getMonth() > startDate.getMonth()) {
                     return 'selectedDate';
                 }
             }
