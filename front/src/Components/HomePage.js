@@ -79,40 +79,47 @@ const HomePage = (props) => {
     }
 
     const updateDay = (day) => {
-        console.log(firstDate);
-        console.log(secondDate);
-        if(firstDate) {
-            if(day.getMonth() > firstDate.getMonth() || day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate()) {
+
+        if(firstDate === null) {
+            setFirstDate(day)
+        }
+        else if(firstDate !== null && secondDate === null) {
+            console.log("THIS HAPPENED ONLY ONE");
+            if(day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate() ||
+            day.getMonth() > firstDate.getMonth()) {
                 setSecondDate(day);
             }else {
                 setFirstDate(day);
+                setSecondDate(firstDate);
             }
+            //     setFirstDate(day);
+            // }
         }
-        else if(firstDate && secondDate) {
-            if(day.getMonth() > secondDate.getMonth() && day.getMonth() > firstDate.getMonth()){
+        else if(firstDate !== null && secondDate !== null) {
+            console.log("SECOND!");
+            if(day.getMonth() === firstDate.getMonth() &&  day.getDate() === firstDate.getDate()) {
+                setFirstDate(secondDate);
+                setSecondDate(null);
+            }
+            else if(day.getMonth() === secondDate.getMonth() &&  day.getDate() === secondDate.getDate()) {
+                setSecondDate(null);
+            }
+            else if(day.getMonth() === secondDate.getMonth() && day.getDate() >= secondDate.getDate() ||  day.getMonth() > secondDate.getMonth()) {
                 setSecondDate(day);
             }
-            else if(day.getMonth() === secondDate.getMonth() && day.getDate() >= secondDate.getDate()) {
-                setSecondDate(day);
-            }else if(day.getMonth() === firstDate.getMonth() && day.getMonth() === secondDate.getMonth() 
-            && day.getDate() >= firstDate.getDate() && day.getDate() <= secondDate.getDate()){
-                setSecondDate(day);
-                
-            }else {
-                setFirstDate(day);
-            }
-        }else {
-            setFirstDate(day);
+            else if(day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate() && day.getMonth() === secondDate.getMonth() && day.getDate() < secondDate.getDate() ||
+             day.getMonth() < secondDate.getMonth() && day.getDate() > firstDate.getDate()) {
+                 setSecondDate(day);
+             }
+       
+            // // console.log("FIRST AND END");
+            // if(day.getMonth() > secondDate.getMonth()){
+            //     setSecondDate(day);
+            // }
+
         }
-
-
-
-        // if(days.length > 1) {
-        //     setFirstDate(days[0]);
-        //     setSecondDate(days[1]);
-        // }
-         //let realDate = `${months[myDate.getMonth()]} ${myDate.getDate()}, ${myDate.getFullYear()}`
-        // setSelectedDates(days);
+    console.log(firstDate);
+    console.log(secondDate);
     }
 
     const changeColor = ({date}) => {
@@ -124,13 +131,26 @@ const HomePage = (props) => {
         }
 
         if(startDate && endDate) {
-        if(date.getMonth() === startDate.getMonth() && date.getMonth() === endDate.getMonth()
-         && date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate()) {
-            return 'selectedDate';
-        }
-        if(date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate()) {
-            return 'selectedDate';
-        }
+            if(startDate.getMonth() === endDate.getMonth()) {
+
+                if(date.getMonth() === startDate.getMonth() && date.getDate() >= startDate.getDate() &&
+                date.getDate() <= endDate.getDate()) {
+                    return 'selectedDate';
+                }
+
+            }
+            if(startDate.getMonth() < endDate.getMonth()) {
+                if(date.getMonth() === startDate.getMonth() && date.getDate() >= startDate.getDate() || date.getMonth() === endDate.getMonth() &&
+                date.getDate() <= endDate.getDate()) {
+                    return 'selectedDate';
+                }
+            }
+        // if(date.getMonth() === startDate.getMonth() && date.getMonth() === endDate.getMonth()
+        //  && date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate() || 
+        //  date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate() && date.getDate() >= startDate.getDate() ||
+        //  startDate.getMonth() < endDate.getMonth() && date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate()) {
+        //     return 'selectedDate';
+        // }
 
         }else {
             return null;
