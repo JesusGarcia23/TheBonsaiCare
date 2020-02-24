@@ -38,10 +38,12 @@ module.exports = {
         })
     },
 
-
-
     searchCarer(req, res) {
         console.log(req.query);
+    },
+
+    createCareAccount(req, res) {
+        
     }
 
 
