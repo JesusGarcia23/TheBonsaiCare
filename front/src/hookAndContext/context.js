@@ -69,6 +69,10 @@ const logOut = () => {
    
 }
 
+const createCareAccount = () => {
+
+}
+
 const addNewBonsai = async ({bonsaiDescription}, props) => {
 
     const { history } = props;
@@ -134,6 +138,9 @@ const handler = (data, type, props) => {
         }
         case "search": {
             goToSearch(data, props);
+            break;
+        }
+        case "createCareAccount": {
             break;
         }
         default:
