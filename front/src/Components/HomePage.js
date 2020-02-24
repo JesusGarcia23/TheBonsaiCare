@@ -33,13 +33,68 @@ const HomePage = (props) => {
 
     let [ firstDate, setFirstDate ] = useState(null);
 
-    let [selectedDates, setSelectedDates] = useState([])
+    let [ secondDate, setSecondDate ] = useState(null);
 
-    let [ secondDate, setSecondDate ] = useState(null)
+    let [ isTrimming, setIsTrimming ] = useState(false);
 
+    let [ isRepotting, setIsRepotting ] = useState(false);
 
+    let [ isWiring, setIsWiring ] = useState(false);
+
+    let [ isFertilizer, setIsFertilizer ] = useState(false);
+
+    let [ isPest, setIsPest ] = useState(false);
 
     let optionSelected = isDropSelected || isBoardingSelected;
+
+    let datesSelected = (firstDate !== null && secondDate !== null) || false;
+
+    const updateState = (event) => {
+        event.preventDefault();
+        console.log(event);
+        const data = {
+            isDropSelected,
+            isBoardingSelected,
+            firstDate,
+            secondDate,
+            isTrimming,
+            isRepotting,
+            isWiring,
+            isFertilizer,
+            isPest,
+        }
+
+        console.log(data);
+    }
+
+    const updateCheckBox = (event) => {
+        switch(event.currentTarget.name) {
+            case 'trimming': {
+                setIsTrimming(!isTrimming);
+                break;
+            }
+            case 'repotting': {
+                setIsRepotting(!isRepotting);
+                break;
+            }
+            case 'wiring/styling': {
+                setIsWiring(!isWiring);
+                break;
+            }
+            case 'fertilizer': {
+                setIsFertilizer(!isFertilizer);
+                break;
+            }
+            case 'insect/pest': {
+                setIsPest(!isPest);
+                break;
+            }
+            default: {
+                return;
+            }
+        }
+
+    }
 
     const switchDiv = (e, move) => {
         e.preventDefault();
@@ -84,7 +139,7 @@ const HomePage = (props) => {
             setFirstDate(day)
         }
         else if(firstDate !== null && secondDate === null) {
-            console.log("THIS HAPPENED ONLY ONE");
+
             if(day.getMonth() === firstDate.getMonth() && day.getDate() > firstDate.getDate() 
             || day.getMonth() > firstDate.getMonth()) {
                 setSecondDate(day);
@@ -115,8 +170,7 @@ const HomePage = (props) => {
              else if(day.getMonth() > firstDate.getMonth()  && day.getMonth() < secondDate.getMonth()) {
                 setSecondDate(day);
              }
-             console.log(firstDate);
-             console.log(secondDate);
+
         }
 
     }
@@ -144,12 +198,6 @@ const HomePage = (props) => {
                     return 'selectedDate';
                 }
             }
-        // if(date.getMonth() === startDate.getMonth() && date.getMonth() === endDate.getMonth()
-        //  && date.getDate() >= startDate.getDate() && date.getDate() <= endDate.getDate() || 
-        //  date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate() && date.getDate() >= startDate.getDate() ||
-        //  startDate.getMonth() < endDate.getMonth() && date.getMonth() === endDate.getMonth() && date.getDate() <= endDate.getDate()) {
-        //     return 'selectedDate';
-        // }
 
         }else {
             return null;
@@ -175,10 +223,26 @@ const HomePage = (props) => {
             <div className='home-search-container-2'>
             <h2>{isDropSelected ? "Drop-in" : "Boarding"}</h2>
             <button onClick={e => switchDiv(e, 'first')}>Go back</button>
-            This is second (Calendar and Maintenance services)
+   
             <Calendar
             className='myCalendar' value={firstDate} minDate={new Date()} onClickDay={e => updateDay(e)}
             tileClassName={(event) => changeColor(event)}/>
+
+            <h2>Additional services</h2>
+
+            <div className='home-list-services-container'>
+            <ul className="home-list-services">
+            <li><input type='checkbox' name='trimming' checked={isTrimming} onChange={e => updateCheckBox(e)}></input>Trimming</li>
+            <li><input type='checkbox' name='repotting' checked={isRepotting} onChange={e => updateCheckBox(e)}></input>Repotting</li>
+            <li><input type='checkbox' name='wiring/styling' checked={isWiring} onChange={e => updateCheckBox(e)}></input>Wiring/Styling</li>
+            <li><input type='checkbox' name='fertilizer' checked={isFertilizer} onChange={e => updateCheckBox(e)}></input>Fertilizer Application</li>
+            <li><input type='checkbox' name='insect/pest' checked={isPest} onChange={e => updateCheckBox(e)}></input>Insect/Pest Control</li>
+            </ul>
+            </div>
+
+            <button onClick={e => updateState(e)} disabled={!datesSelected ? true : false}>
+           Continue
+            </button>
             </div>
 
             </div>

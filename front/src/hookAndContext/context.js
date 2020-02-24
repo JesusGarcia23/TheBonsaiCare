@@ -18,7 +18,8 @@ const [ message, setMessage ] = useState("");
 
 const [ done, setDone ] = useState(false);
 
-const [ currentUser, setCurrentUser ] = useState(initialCurrentUser)
+const [ currentUser, setCurrentUser ] = useState(initialCurrentUser);
+
 
 const logIn = ({email, password}) => {
 
