@@ -25,15 +25,11 @@ const HomePage = (props) => {
     const div2 = document.getElementsByClassName('home-search-container-2');
 
     const homeContext = useContext(Context);
-    const {currentUser, handleSubmitForm, message} = homeContext;
+    const {currentUser, handleSubmitForm, message, firstDate, setFirstDate, secondDate, setSecondDate} = homeContext;
 
     let [ isDropSelected, setIsDropSelected ] = useState(false);
 
     let [ isBoardingSelected, setIsBoardingSelected ] = useState(false);
-
-    let [ firstDate, setFirstDate ] = useState(null);
-
-    let [ secondDate, setSecondDate ] = useState(null);
 
     let [ isTrimming, setIsTrimming ] = useState(false);
 
@@ -51,20 +47,16 @@ const HomePage = (props) => {
 
     const updateState = (event) => {
         event.preventDefault();
-        console.log(event);
         const data = {
             isDropSelected,
             isBoardingSelected,
-            firstDate,
-            secondDate,
             isTrimming,
             isRepotting,
             isWiring,
             isFertilizer,
             isPest,
         }
-
-        console.log(data);
+        handleSubmitForm(data, "search", props);
     }
 
     const updateCheckBox = (event) => {

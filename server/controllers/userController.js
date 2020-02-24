@@ -36,6 +36,12 @@ module.exports = {
             if(error) console.error(`Something wen trong!`, error)
             else console.log(result)
         })
+    },
+
+
+
+    searchCarer(req, res) {
+        console.log(req.query);
     }
 
 

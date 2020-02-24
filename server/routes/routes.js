@@ -16,7 +16,8 @@ router.post('/careSignup', authController.careSignUp);
 
 // USER ACTION ROUTES
 router.post('/uploadNewImg', uploader.single('imageUrl'), userController.uploadImage);
-router.post('/deleteCloudImg', userController.deleteCloudImg)
+router.post('/deleteCloudImg', userController.deleteCloudImg);
 router.post('/newBonsai', bonsaiController.createBonsai);
+router.get('/search', userController.searchCarer);
 
 module.exports = router

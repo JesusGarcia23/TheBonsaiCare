@@ -6,7 +6,7 @@ const careUserSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId, ref: "User"
     },
-    skills: {
+    services: {
         type: [String],
         enum: ["Trimming", "Fertilizer", "Insect control", "Repotting", "Wiring"]
     },
@@ -16,7 +16,6 @@ const careUserSchema = new Schema({
     comingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
-    services: [{type:  Schema.Types.ObjectId, ref: "Service"}],
 
 })
 

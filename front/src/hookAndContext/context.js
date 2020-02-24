@@ -14,11 +14,17 @@ const { currentUser: initialCurrentUser } = props
 
 const [ imageUpload, setImageUpload ] = useState("");
 
+const [searchQuery, setSearchQuery] = useState("");
+
 const [ message, setMessage ] = useState("");
 
 const [ done, setDone ] = useState(false);
 
 const [ currentUser, setCurrentUser ] = useState(initialCurrentUser);
+
+let [ firstDate, setFirstDate ] = useState(null);
+
+let [ secondDate, setSecondDate ] = useState(null);
 
 
 const logIn = ({email, password}) => {
@@ -102,9 +108,15 @@ const uploadNewImage = async (e) => {
     }).catch(err => console.error(err))
 }
 
+const goToSearch = (data, props) => {
+    console.log(props);
+   let { isDropSelected, isBoardingSelected, isTrimming, isRepotting, isWiring, isFertilizer, isPest } = data;
+    setSearchQuery(`drop=${isDropSelected}&boarding=${isBoardingSelected}&Trimming=${isTrimming}&Repotting=${isRepotting}&Wiring=${isWiring}&Fertilizer=${isFertilizer}&pest=${isPest}`);
+
+    props.history.push(`/search`);
+}
+
 const handler = (data, type, props) => {
-    console.log(type);
-    console.log();
     switch(type){
         case "login": {
             logIn(data);
@@ -118,6 +130,10 @@ const handler = (data, type, props) => {
 
         case "createBonsai": {
             addNewBonsai(data, props);
+            break;
+        }
+        case "search": {
+            goToSearch(data, props);
             break;
         }
         default:
@@ -154,6 +170,11 @@ const data = {
     setImageUpload,
     uploadNewImage,
     addNewBonsai,
+    firstDate,
+    setFirstDate,
+    secondDate,
+    setSecondDate,
+    searchQuery
 }
 
 return <Context.Provider value={data}>{props.children}</Context.Provider>
