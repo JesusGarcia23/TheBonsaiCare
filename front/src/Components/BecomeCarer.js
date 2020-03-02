@@ -14,6 +14,11 @@ const BecomeCarer = (props) => {
             <div>
             <h1>Hello Become a Carer page</h1>
             <form onSubmit={handleSubmit(onData)}>
+
+            <h2>Services you provide</h2>
+            <label>Drop-in visit</label>
+            <input>Boarding</input>
+
             
             </form>
             </div>

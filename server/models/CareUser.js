@@ -8,17 +8,25 @@ const careUserSchema = new Schema({
     },
     services: {
         type: [String],
-        enum: ["Trimming", "Fertilizer", "Insect control", "Repotting", "Wiring"]
+        enum: [ "DropinVisit", "Boarding", "Trimming", "Fertilizer", "Insect control", "Repotting", "Wiring"]
     },
+    fees: 
+        {
+         boarding: { type: Number, default: 0},
+         maintenance: {type: Number, default: 0}  
+        }
+    ,
     pendingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
     comingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
+    oldCare: [{
+        type: Schema.Types.ObjectId, ref: "Care"
+    }],
+});
 
-})
+const CareUser = mongoose.model("CareUser", careUserSchema);
 
-const CareUser = mongoose.model("CareUser", careUserSchema)
-
-module.exports = CareUser
+module.exports = CareUser;
