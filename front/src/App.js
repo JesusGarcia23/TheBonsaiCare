@@ -6,7 +6,6 @@ import Search from './Components/SearchCare';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Profile from './Components/Profile';
-import CareSignup from './Components/CareSignup';
 import Dashboard from './Components/Dashboard';
 import CreateBonsai from './Components/CreateBonsai';
 import BecomeCarer from './Components/BecomeCarer';
@@ -25,7 +24,6 @@ const App = () => {
     <Route exact path='/login' component={Login}/>
     <Route exact path='/search' component={Search}/>
     <Route exact path='/profile/:id' component={Profile}/>
-    <Route exact path='/caresignup' component={CareSignup}/>
     <Route exact path='/dashboard' component={Dashboard}/>
     <Route exact path='/createBonsai' component={CreateBonsai}/>
     <Route exact path='/becomeacarer' component={BecomeCarer}/>
