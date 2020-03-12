@@ -7,7 +7,8 @@ const BecomeCarer = (props) => {
     const careContext = useContext(Context);
     const { handleSubmit , register } = useForm();
     const {currentUser, handleSubmitForm, message} = careContext;
-    const onData = (thedata) => { handleSubmitForm(thedata, "caresignup") };
+    const onData = (thedata) => { handleSubmitForm(thedata, "createCareAccount") };
+    let value = "Hello";
 
     if(currentUser) {
         return (
@@ -42,27 +43,27 @@ const BecomeCarer = (props) => {
             <ul>
             <li>
             <label>Trimming</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='trimming' ref={register}></input>
             </li>
             
             <li>
             <label>Repotting</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='repotting' ref={register}></input>
             </li>
 
             <li>
             <label>Wiring/Styling</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='wiringStyling' ref={register}></input>
             </li>
 
             <li>
             <label>Fertilizer Application</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='fertilizer' ref={register}></input>
             </li>
 
             <li>
             <label>Insect/Pest Control</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='pestControl' ref={register}></input>
             </li>
 
             </ul>
@@ -73,14 +74,14 @@ const BecomeCarer = (props) => {
             <ul>
             
             <li>
-            <label>Boarding</label>
-            <input type='number'></input>
+            <label>Boarding $</label>
+            <input type='number' name='boarding' ref={register}></input>
             <label>per night</label>
             </li>
             
             <li>
-            <label>Maintenance</label>
-            <input type='number'></input>
+            <label>Maintenance $</label>
+            <input type='number' name='maintenance' ref={register}></input>
             <label>per hour</label>
             </li>
             
@@ -94,22 +95,22 @@ const BecomeCarer = (props) => {
             
             <li>
             <label>Small</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='small' ref={register}></input>
             </li>
 
             <li>
             <label>Medium</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='medium' ref={register}></input>
             </li>
 
             <li>
             <label>Large</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='large' ref={register}></input>
             </li>
 
             <li>
             <label>X-Large</label>
-            <input type='checkbox'></input>
+            <input type='checkbox' name='xLarge' ref={register}></input>
             </li>
             
             </ul>
@@ -118,10 +119,10 @@ const BecomeCarer = (props) => {
             <div>
             <h3>Tree Species you are familiar with</h3>
             <h6>Use "," to separate</h6>
-            <textarea>
+            <textarea name='treesClasses' ref={register}>
             </textarea>
             </div>
-
+            <button>Register</button>
             </form>
             </div>
         )

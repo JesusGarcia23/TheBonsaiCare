@@ -69,7 +69,8 @@ const logOut = () => {
    
 }
 
-const createCareAccount = () => {
+const createCareAccount = (data, props) => {
+    console.log(data);
 
 }
 
@@ -141,6 +142,7 @@ const handler = (data, type, props) => {
             break;
         }
         case "createCareAccount": {
+            createCareAccount(data, props);
             break;
         }
         default:
