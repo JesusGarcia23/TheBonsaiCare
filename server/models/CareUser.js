@@ -22,7 +22,7 @@ const careUserSchema = new Schema({
     comingCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
-    oldCare: [{
+    pastCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
 });

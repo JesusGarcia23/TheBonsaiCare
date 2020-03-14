@@ -62,13 +62,17 @@ module.exports = {
 
     careSignUp(req, res, next) {
        console.log(req.user);
+       let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, maintenance, small, medium, large, xLarge, treesClasses} = req.body;
+       treesClasses = treesClasses !== "" ? treesClasses.split(',') : [];
+       console.log(treesClasses);
 
        CareUser.create({
         user: req.user.id,
-        skills: [],
+        services: [],
+        fees: "Hello",
         pendingCare: [],
         comingCare: [],
-        services: [],
+        pastCare: []
     }).then(newCareUser => {
         console.log(newCareUser);
     }).catch(err => {
