@@ -3,15 +3,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const careSchema = new Schema({
-    user: {
+    provider: {
         type: Schema.Types.ObjectId, ref: "User"
     },
-    pendingCare: {
-        type: Schema.Types.ObjectId, ref: "Care"
+    client: {
+        type: Schema.Types.ObjectId, ref: "User"
     },
-    comingCare: {
-        type: Schema.Types.ObjectId, ref: "Care"
+    startDay: {
+        type: Date
     },
+    lastDay: {
+        type: Date
+    },
+
 
 })
 
