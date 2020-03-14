@@ -25,6 +25,8 @@ const careUserSchema = new Schema({
     pastCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
+    sizePreference: [String],
+    listOfTrees: [String]
 });
 
 const CareUser = mongoose.model("CareUser", careUserSchema);

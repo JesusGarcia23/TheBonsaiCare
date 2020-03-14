@@ -70,19 +70,6 @@ const logOut = () => {
 }
 
 const createCareAccount = (data, props) => {
-    console.log(data);
-    let {trimming,
-        repotting,
-        wiringStyling,
-        fertilizer,
-        pestControl,
-        boarding,
-        maintenance,
-        small,
-        medium,
-        large,
-        xLarge,
-        treesClasses } = data;
 
         api.post('/careSignup', data, {withCredentials: true})
         .then(response => {

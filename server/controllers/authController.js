@@ -61,23 +61,58 @@ module.exports = {
     },
 
     careSignUp(req, res, next) {
-       console.log(req.user);
-       let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, maintenance, small, medium, large, xLarge, treesClasses} = req.body;
-       treesClasses = treesClasses !== "" ? treesClasses.split(',') : [];
-       console.log(treesClasses);
 
-       CareUser.create({
-        user: req.user.id,
-        services: [],
-        fees: "Hello",
-        pendingCare: [],
-        comingCare: [],
-        pastCare: []
-    }).then(newCareUser => {
-        console.log(newCareUser);
-    }).catch(err => {
-        console.log(err);
-    })
+        CareUser.find({user: req.user.id})
+        .then(userFound => {
+   
+            if(userFound.length > 0) {
+                return null;
+            }else {
+
+                let serviceArr = [];
+                let sizesArr = [];
+                let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, dropinVisit, boardingPrice, maintenancePrice, small, medium, large, xLarge, treesClasses} = req.body;
+                let services = {Boarding: boarding, DropinVisit: dropinVisit, Trimming: trimming, Repotting: repotting, Wiring: wiringStyling, Fertilizer: fertilizer, pestControl: pestControl};
+                let sizesPreference = {small: small, medium: medium, large: large, xLarge: xLarge};
+
+                for(let keys in services){
+                    services[keys] === true ? serviceArr.push(keys) : null;
+                }
+
+                for(let sizes in sizesPreference){
+                    sizesPreference[sizes] === true ? sizesArr.push(sizes) : null;
+                }
+
+                CareUser.create({
+                    user: req.user.id,
+                    services: serviceArr,
+                    fees: {
+                        boardingPrice,
+                        maintenancePrice
+                    },
+                    pendingCare: [],
+                    comingCare: [],
+                    pastCare: [],
+                    sizePreference: sizesArr,
+                    treesClasses: treesClasses !== "" ? treesClasses.split(',') : [],
+                }).then(newCareUser => {
+                    console.log(newCareUser);
+                    User.findByIdAndUpdate(req.user.id, {careProfile: newCareUser.id})
+                    .then(response => {
+                        res.json({message: "Account successfully created"})
+                    }).catch(err => {
+                        res.json({message: "An errror just happened", err})
+                    })
+
+                }).catch(err => {
+                    console.log(err);
+                })
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+    
 
     }
 

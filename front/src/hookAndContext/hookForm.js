@@ -8,7 +8,6 @@ const handleSubmitForm = (data, type, props) => {
 }
 
 const handleInputChange = (event) => {
-    event.preventDefault()
     event.persist()
     setInputs(inputs => ({...inputs, [event.target.name]: event.target.value }));
 }
