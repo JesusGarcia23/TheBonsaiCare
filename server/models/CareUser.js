@@ -27,7 +27,12 @@ const careUserSchema = new Schema({
     }],
     daysNoAvailable: [Date],
     sizePreference: [String],
-    listOfTrees: [String]
+    listOfTrees: [String],
+    rating: Number,
+    reviews: [{
+        user: String,
+        comment: String
+    }]
 });
 
 const CareUser = mongoose.model("CareUser", careUserSchema);
