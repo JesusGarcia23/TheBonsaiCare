@@ -20,4 +20,6 @@ router.post('/deleteCloudImg', userController.deleteCloudImg);
 router.post('/newBonsai', bonsaiController.createBonsai);
 router.get('/search', userController.searchCarer);
 
+router.get('/carerProfile/:id', userController.carerProfile);
+
 module.exports = router

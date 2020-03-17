@@ -25,6 +25,7 @@ const careUserSchema = new Schema({
     pastCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
+    daysNoAvailable: [Date],
     sizePreference: [String],
     listOfTrees: [String]
 });

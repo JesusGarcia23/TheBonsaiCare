@@ -9,6 +9,7 @@ import Profile from './Components/Profile';
 import Dashboard from './Components/Dashboard';
 import CreateBonsai from './Components/CreateBonsai';
 import BecomeCarer from './Components/BecomeCarer';
+import CarerProfile from './Components/CarerProfile';
 import './App.css';
 
 const Navbar = lazy(() => import('./Components/Navbar'));
@@ -27,7 +28,7 @@ const App = () => {
     <Route exact path='/dashboard' component={Dashboard}/>
     <Route exact path='/createBonsai' component={CreateBonsai}/>
     <Route exact path='/becomeacarer' component={BecomeCarer}/>
-    <Route exact path = '/carerProfile/:id'></Route>
+    <Route exact path = '/carerProfile/:id' component={CarerProfile}></Route>
     </Switch>
     
     </Suspense>

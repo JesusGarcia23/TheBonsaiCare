@@ -1,7 +1,9 @@
 const Bonsai = require('../models/Bonsai');
 const Image = require('../models/Image');
 const cloudinary = require('cloudinary');
-const session = require('express-session')
+const session = require('express-session');
+const User = require('../models/User');
+const CareUser = require('../models/CareUser');
 
 module.exports = {
     
@@ -44,6 +46,16 @@ module.exports = {
 
     createCareAccount(req, res) {
         
+    },
+
+    carerProfile(req, res) {
+        const {id} = req.params;
+        CareUser.findById(id)
+        .then(theUser => {
+            console.log(theUser)
+        }).catch(err => {
+            console.error(err);
+        })
     }
 
 
