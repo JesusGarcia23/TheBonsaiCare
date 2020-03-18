@@ -18,7 +18,7 @@ router.post('/careSignup', authController.careSignUp);
 router.post('/uploadNewImg', uploader.single('imageUrl'), userController.uploadImage);
 router.post('/deleteCloudImg', userController.deleteCloudImg);
 router.post('/newBonsai', bonsaiController.createBonsai);
-router.get('/search', userController.searchCarer);
+router.get('/searchCare', userController.searchCarer);
 
 router.get('/carerProfile/:id', userController.carerProfile);
 

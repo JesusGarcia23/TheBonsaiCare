@@ -9,8 +9,7 @@ const SearchCare = (props) => {
     let {searchQuery} = searchContext;
 
     useEffect(() => {
-        console.log(`/search?${searchQuery}`)
-        api.get(`/search?${searchQuery}`, {withCredentials: true})
+        api.get(`/searchCare`, {withCredentials: true})
         .then(response => {
             console.log(response.data);
         }).catch(err => {
@@ -25,3 +24,11 @@ const SearchCare = (props) => {
 }
 
 export default SearchCare;
+
+     // console.log(`/search?${searchQuery}`)
+        // api.get(`/search?${searchQuery}`, {withCredentials: true})
+        // .then(response => {
+        //     console.log(response.data);
+        // }).catch(err => {
+        //     console.error(err);
+        // });
