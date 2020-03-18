@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const CareUser = require('../models/CareUser');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
@@ -62,7 +61,7 @@ module.exports = {
 
     careSignUp(req, res, next) {
 
-        CareUser.find({user: req.user.id})
+        User.find({user: req.user.id})
         .then(userFound => {
    
             if(userFound.length > 0) {
@@ -83,31 +82,7 @@ module.exports = {
                     sizesPreference[sizes] === true ? sizesArr.push(sizes) : null;
                 }
 
-                CareUser.create({
-                    user: req.user.id,
-                    services: serviceArr,
-                    fees: {
-                        boardingPrice,
-                        maintenancePrice
-                    },
-                    pendingCare: [],
-                    comingCare: [],
-                    pastCare: [],
-                    sizePreference: sizesArr,
-                    treesClasses: treesClasses !== "" ? treesClasses.split(',') : [],
-                }).then(newCareUser => {
-                    console.log(newCareUser);
-                    User.findByIdAndUpdate(req.user.id, {careProfile: newCareUser.id})
-                    .then(response => {
-                        res.json({message: "Account successfully created"})
-                    }).catch(err => {
-                        res.json({message: "An errror just happened", err})
-                    })
-
-                }).catch(err => {
-                    console.log(err);
-                })
-                        }
+                }
                     })
                     .catch(err => {
                         console.error(err);

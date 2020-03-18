@@ -40,9 +40,37 @@ const userSchema = new Schema({
     },
     bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}],
     careProfile: {
-        type: Schema.Types.ObjectId, ref: "CareUser",
-        default: null
-    }
+        type: Boolean,
+        default: false
+    },
+    services: {
+        type: [String],
+        enum: [ "DropinVisit", "Boarding", "Trimming", "Fertilizer", "Insect control", "Repotting", "Wiring"]
+    },
+    fees: 
+        {
+         boarding: { type: Number, default: 0},
+         maintenance: {type: Number, default: 0}  
+        }
+    ,
+    pendingCare: [{
+        type: Schema.Types.ObjectId, ref: "Care"
+    }],
+    comingCare: [{
+        type: Schema.Types.ObjectId, ref: "Care"
+    }],
+    pastCare: [{
+        type: Schema.Types.ObjectId, ref: "Care"
+    }],
+    daysNoAvailable: [Date],
+    sizePreference: [String],
+    listOfTrees: [String],
+    rating: Number,
+    reviews: [{
+        user: String,
+        comment: String
+    }]
+
 }, {
     timestamps: true
 })

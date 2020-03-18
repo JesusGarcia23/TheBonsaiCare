@@ -3,7 +3,6 @@ const Image = require('../models/Image');
 const cloudinary = require('cloudinary');
 const session = require('express-session');
 const User = require('../models/User');
-const CareUser = require('../models/CareUser');
 
 module.exports = {
     
@@ -50,7 +49,7 @@ module.exports = {
 
     carerProfile(req, res) {
         const {id} = req.params;
-        CareUser.findById(id)
+        User.findById(id)
         .then(theUser => {
             console.log(theUser)
         }).catch(err => {
