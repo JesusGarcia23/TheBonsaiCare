@@ -60,35 +60,40 @@ module.exports = {
     },
 
     careSignUp(req, res, next) {
+        console.log(req.body);
+        let serviceArr = [];
+        let sizesArr = [];
+        let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, dropinVisit, boardingPrice, maintenancePrice, small, medium, large, xLarge, treesClasses} = req.body;
+        let services = {Boarding: boarding, DropinVisit: dropinVisit, Trimming: trimming, Repotting: repotting, Wiring: wiringStyling, Fertilizer: fertilizer, pestControl: pestControl};
+        let sizesPreference = {small: small, medium: medium, large: large, xLarge: xLarge};
 
-        User.find({user: req.user.id})
-        .then(userFound => {
-   
-            if(userFound.length > 0) {
-                return null;
-            }else {
+        for(let keys in services){
+            services[keys] === true ? serviceArr.push(keys) : null;
+        }
 
-                let serviceArr = [];
-                let sizesArr = [];
-                let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, dropinVisit, boardingPrice, maintenancePrice, small, medium, large, xLarge, treesClasses} = req.body;
-                let services = {Boarding: boarding, DropinVisit: dropinVisit, Trimming: trimming, Repotting: repotting, Wiring: wiringStyling, Fertilizer: fertilizer, pestControl: pestControl};
-                let sizesPreference = {small: small, medium: medium, large: large, xLarge: xLarge};
+        for(let sizes in sizesPreference){
+            sizesPreference[sizes] === true ? sizesArr.push(sizes) : null;
+        }
 
-                for(let keys in services){
-                    services[keys] === true ? serviceArr.push(keys) : null;
-                }
-
-                for(let sizes in sizesPreference){
-                    sizesPreference[sizes] === true ? sizesArr.push(sizes) : null;
-                }
-
-                }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    })
-    
-
+        User.findOne({_id: req.user.id}, (err, user) => {
+            if(err){
+                return err;
+            }
+            user.careProfile = true;
+            user.services = serviceArr;
+            user.fees.boarding = boardingPrice;
+            user.fees.maintenance = maintenancePrice;
+            user.pendingCare = [];
+            user.comingCare = [];
+            user.pastCare = [];
+            user.daysNoAvailable = [];
+            user.sizePreference = sizesArr;
+            user.listOfTrees = [];
+            user.rating = 0;
+            user.reviews = [];
+            user.save();
+            res.json(user);
+        })
     }
 
 }

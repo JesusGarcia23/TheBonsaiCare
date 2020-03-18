@@ -34,10 +34,6 @@ const userSchema = new Schema({
         type: String,
         default: null
     },
-    rate: {
-        type: Number,
-        default: 0
-    },
     bonsais: [{type: Schema.Types.ObjectId, ref: "Bonsai"}],
     careProfile: {
         type: Boolean,
@@ -65,7 +61,10 @@ const userSchema = new Schema({
     daysNoAvailable: [Date],
     sizePreference: [String],
     listOfTrees: [String],
-    rating: Number,
+    rating: {
+        type: Number,
+        default: 0
+    },
     reviews: [{
         user: String,
         comment: String

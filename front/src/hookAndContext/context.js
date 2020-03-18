@@ -70,7 +70,7 @@ const logOut = () => {
 }
 
 const createCareAccount = (data, props) => {
-
+    console.log(data);
         api.post('/careSignup', data, {withCredentials: true})
         .then(response => {
             console.log(response);

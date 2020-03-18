@@ -43,10 +43,6 @@ module.exports = {
         console.log(req.query);
     },
 
-    createCareAccount(req, res) {
-        
-    },
-
     carerProfile(req, res) {
         const {id} = req.params;
         User.findById(id)

@@ -23,12 +23,12 @@ const BecomeCarer = (props) => {
             <ul>
             <li>
             <label>Drop-in visit</label>
-            <input type='checkbox' name='dropinVisit'></input>
+            <input type='checkbox' name='dropinVisit' ref={register}></input>
             </li>
             
             <li>
             <label>Boarding</label>
-            <input type='checkbox' name='boarding'></input>
+            <input type='checkbox' name='boarding' ref={register}></input>
             </li>
 
 

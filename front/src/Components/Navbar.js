@@ -25,7 +25,7 @@ return(
       <li><Link to='/dashboard'>Dashboard</Link></li>
       <li><Link to='/search'>Search</Link></li>
       <li><Link to='/inbox'>Inbox</Link></li>
-      {currentUser.careProfile === null ? <li><Link to='becomeacarer'>Become a carer</Link></li> : <li><Link to={`/carerProfile/${currentUser.careProfile}`}>Carer Profile</Link></li>}
+      {currentUser.careProfile === false ? <li><Link to='/becomeacarer'>Become a carer</Link></li> : <li><Link to={`/carerProfile/${currentUser.careProfile}`}>Carer Profile</Link></li>}
       </ul> : <ul className="navbar-nav">
       <Link to='/signup' className='nav-link'>Signup</Link>
       <Link to='/login' className='nav-link'>Login</Link>
