@@ -137,6 +137,29 @@
 }
 
 
+/* SEARCH CARE PAGE */
+.searchCare-container {
+display: flex;
+justify-content: flex-start;
+width: 100vw;
+}
+
+.searchCare-filter-container {
+  width: 20vw;
+  border: 1px solid red;
+  height: 60vh;
+  position: sticky;
+  top: 0;
+}
+
+.careUser-box {
+  border: 1px solid grey;
+  width: 40vw;
+  height: 25vh;
+  margin-left: 2vw;
+  margin-top: 1vh;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

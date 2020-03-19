@@ -60,7 +60,6 @@ module.exports = {
     },
 
     careSignUp(req, res, next) {
-        console.log(req.body);
         let serviceArr = [];
         let sizesArr = [];
         let { trimming, repotting, wiringStyling, fertilizer, pestControl, boarding, dropinVisit, boardingPrice, maintenancePrice, small, medium, large, xLarge, treesClasses} = req.body;

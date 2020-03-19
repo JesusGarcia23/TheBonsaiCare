@@ -40,7 +40,13 @@ module.exports = {
     },
 
     searchCarer(req, res) {
-        console.log(req.query);
+        console.log("THIS IS SEARCH");
+        User.find({careProfile: true}).select('-password')
+        .then(allUsers => {
+            res.json(allUsers);
+        }).catch(err => {
+            console.error(err);
+        })
     },
 
     carerProfile(req, res) {
