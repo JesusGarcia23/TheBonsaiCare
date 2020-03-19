@@ -61,10 +61,10 @@ const userSchema = new Schema({
     daysNoAvailable: [Date],
     sizePreference: [String],
     listOfTrees: [String],
-    rating: {
+    rating: [{
         type: Number,
         default: 0
-    },
+    }],
     reviews: [{
         user: String,
         comment: String

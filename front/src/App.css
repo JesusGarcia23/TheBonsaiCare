@@ -158,6 +158,7 @@ width: 100vw;
   height: 25vh;
   margin-left: 2vw;
   margin-top: 1vh;
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {

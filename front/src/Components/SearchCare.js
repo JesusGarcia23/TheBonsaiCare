@@ -23,11 +23,17 @@ const SearchCare = (props) => {
     const displayUsers = () => {
        return allUsers.map(eachUser => {
            console.log(eachUser);
-            return <div className='careUser-box' key={eachUser._id}>
+            return <div className='careUser-box' key={eachUser._id} onClick={(e) => goToProfile(e, eachUser._id)}>
             <h5>{eachUser.firstName} {eachUser.lastName}</h5>
             
             </div>
         })
+    }
+
+
+    const goToProfile = (event, id) => {
+        event.preventDefault();
+        props.history.push(`/carerProfile/${id}`);
     }
  
     return (
