@@ -51,9 +51,10 @@ module.exports = {
 
     carerProfile(req, res) {
         const {id} = req.params;
-        User.findById(id)
+        User.findById(id).select('-password')
         .then(theUser => {
-            console.log(theUser)
+            console.log(theUser);
+            res.json(theUser);
         }).catch(err => {
             console.error(err);
         })

@@ -58,6 +58,9 @@ const userSchema = new Schema({
     pastCare: [{
         type: Schema.Types.ObjectId, ref: "Care"
     }],
+    quotes: [{
+        type: Schema.Types.ObjectId, ref: "Quote"
+    }],
     daysNoAvailable: [Date],
     sizePreference: [String],
     listOfTrees: [String],

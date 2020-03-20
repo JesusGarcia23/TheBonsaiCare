@@ -14,9 +14,9 @@ const Dashboard = (props) => {
         <div>
         <div>This is DashBoard</div>
 
-        <div className='create-bonsai-square' onClick={e => goToCreateBonsai(e)}>
+        <div className='create-bonsai-square'>
         <h2>Your Bonsais</h2>
-        <p>Create new bonsai</p>
+        <button  onClick={e => goToCreateBonsai(e)}>Create new bonsai</button>
         </div>
 
         </div>
