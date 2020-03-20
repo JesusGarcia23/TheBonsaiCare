@@ -16,3 +16,7 @@ const quoteSchema = new Schema({
     message: String,
 
 })
+
+const Quote = mongoose.model("Quote", quoteSchema);
+
+module.exports = Quote;

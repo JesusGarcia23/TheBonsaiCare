@@ -26,6 +26,8 @@ let [ firstDate, setFirstDate ] = useState(null);
 
 let [ secondDate, setSecondDate ] = useState(null);
 
+let [ careSearchPrefences ,setCareSearchPreferences] = useState(null);
+
 
 const logIn = ({email, password}) => {
 
@@ -145,6 +147,7 @@ const handler = (data, type, props) => {
         }
         case "search": {
             goToSearch(data, props);
+            setCareSearchPreferences(data);
             break;
         }
         case "createCareAccount": {
@@ -189,7 +192,8 @@ const data = {
     setFirstDate,
     secondDate,
     setSecondDate,
-    searchQuery
+    searchQuery,
+    careSearchPrefences
 }
 
 return <Context.Provider value={data}>{props.children}</Context.Provider>
