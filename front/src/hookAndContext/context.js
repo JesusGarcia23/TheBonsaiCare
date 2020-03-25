@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Redirect} from 'react-router-dom';
 import * as io from 'socket.io-client'
 import api from '../services/api'
 import useForm from './hookForm'
@@ -66,8 +67,10 @@ const signUp = ({firstName, lastName, email, password}) => {
 const logOut = () => {
     api.delete('/logout', {withCredentials: true})
     .then(response => {
-        setCurrentUser(null);
-    }).catch(err => console.error(`An error happened while trying to log out`));
+        const {user} = response.data
+        setCurrentUser(user);
+        window.location.href = "/";
+    }).catch(err => console.error(`An error happened while trying to log out`, err));
    
 }
 
